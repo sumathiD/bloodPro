@@ -1,12 +1,12 @@
 import React from 'react';
-import { Link} from 'react-router-dom';
+import { useNavigate, Link} from 'react-router-dom';
 
 function LoginDemo() {
-  
+  let navigate= useNavigate();
   return (
     <div>
        <input type="text"></input><br/><br/>
-       <button>submit</button>
+       <button onClick={() => navigate("../dashboard") }>submit</button>
        
     </div>
   )

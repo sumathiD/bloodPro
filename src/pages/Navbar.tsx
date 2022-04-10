@@ -6,17 +6,17 @@ import FindBloodGroup from './FindBloodGroup';
 function Navbar() {
   return (
     <div>
-        <h2>Navbar</h2>
-        <nav>
-            <NavLink to="/findBlookGroup"><FindBloodGroup />--Find--</NavLink><br/><br/>
-            <NavLink to="/donorsList"><DonorsList />--Donor--</NavLink>
-      </nav>
-        {/* <ul style={{ listStyle: 'none'}}>
-            <li><Link to="/findBloodGroup">Find a Blood Group</Link></li>
-            <li><Link to="/registerDonar">Register Blood Group</Link></li>
-            <li><Link to="#">Latest Donor list</Link></li>
-            <li><Link to="#">Help</Link></li>
-        </ul> */}
+        {/* <nav>
+            <NavLink style={{margin: '10px'}} to="findBloodGroup">Find Blood Group</NavLink> 
+            <NavLink to="donorsList">Donors List</NavLink>
+      </nav> */}
+        <ul className='navList'>
+            <li><Link to="findBloodGroup">Find a Blood Group</Link></li>
+            <li><Link to="registerDonar">Register Blood Group</Link></li>
+            <li><Link to="donorsList">Latest Donor list</Link></li>
+            <li><Link to="help">Help</Link></li>
+            <li><Link to="../login">Login</Link></li>
+        </ul>
 
     </div>
   )

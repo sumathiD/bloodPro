@@ -13,19 +13,22 @@ import Dashboard from './pages/Dashboard';
 function App() {
   return (
     <div className="App">
-      <LoginDemo />
-   <BrowserRouter>
-        <Routes>
-        
-          <Route path="/" element={<Dashboard />} />
-      
-          {/* <Route path="/donorsList" element={<DonorsList />} />
-          <Route path="/findBlookGroup" element={<FindBloodGroup />} /> */}
-        </Routes>
-      </BrowserRouter>
-  
+      <Routes>
+        <Route path="" element={<LoginDemo />} />
+        <Route path="login" element={<LoginDemo />} />
+        <Route path="signup" element={<Signup />} />
+        <Route path="dashboard" element={<Dashboard />} >
+          <Route path="" element={<FindBloodGroup />} />
+          <Route path="findBloodGroup" element={<FindBloodGroup />} />
+          <Route path="registerDonar" element={<RegisterDonar />} />
+          <Route path="donorsList" element={<DonorsList />} />
+          <Route path="help" element={<Help />} />
+        </Route>
+      </Routes>
 
-    
+
+
+
       {/* <BrowserRouter>
     <Routes>
       <Route path="/" element= { <LoginDemo /> } />

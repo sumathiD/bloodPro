@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from './Navbar';
-import { BrowserRouter,  Routes,  Route,Outlet } from "react-router-dom";
+import { BrowserRouter,  Routes,  Route, Outlet } from "react-router-dom";
 import FindBloodGroup from './FindBloodGroup';
 import RegisterDonar from './RegisterDonar';
 import {NavLink} from 'react-router-dom'
@@ -11,7 +11,7 @@ function Dashboard() {
   return (
     <div>
         <Navbar />
-        <p>Nav link page comes here</p>
+        <p></p>
         <Outlet />
   
     </div>
