@@ -15,7 +15,7 @@ function Navbar() {
             <li><Link to="registerDonar">Register Blood Group</Link></li>
             <li><Link to="donorsList">Latest Donor list</Link></li>
             <li><Link to="help">Help</Link></li>
-            <li><Link to="../login">Login</Link></li>
+            <li><Link to="/">Login</Link></li>
         </ul>
 
     </div>

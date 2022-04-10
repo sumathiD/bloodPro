@@ -15,7 +15,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="" element={<LoginDemo />} />
-        <Route path="login" element={<LoginDemo />} />
+        <Route path="/" element={<LoginDemo />} />
         <Route path="signup" element={<Signup />} />
         <Route path="dashboard" element={<Dashboard />} >
           <Route path="" element={<FindBloodGroup />} />

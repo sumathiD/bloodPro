@@ -11,7 +11,7 @@ function Dashboard() {
   return (
     <div>
         <Navbar />
-        <p></p>
+       
         <Outlet />
   
     </div>
