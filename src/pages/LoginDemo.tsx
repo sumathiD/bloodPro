@@ -36,11 +36,11 @@ function LoginDemo() {
       <Button variant="contained" color="primary" fullWidth style={buttonStyle} onClick={() => navigate("../dashboard") }>
        LOGIN
       </Button>
-      <Typography>
+      {/* <Typography>
   <Link href="#">
     forgot password ?
   </Link>
-</Typography>
+</Typography> */}
 <Typography>
   Do you have an account ?
   <Link href="#">
