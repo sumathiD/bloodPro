@@ -1,10 +1,46 @@
-import React from 'react'
+import React from 'react';
+import { useNavigate,} from 'react-router-dom';
+import {Avatar, Grid,Paper, TextField,Link} from '@material-ui/core'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+
 
 function Signup() {
+  let navigate= useNavigate();
+  const paperStyle={padding:20,height:'60vh',width:280,margin:'20px auto'};
+  const buttonStyle={margin:'8px 0'}
+  const avatarStyle={backgroundColor:"#305281"}
   return (
-    <div>
-        <h2>Signup</h2>
-    </div>
+    <Grid>
+       {/* <input type="text"></input><br/><br/>
+       <button onClick={() => navigate("../dashboard") }>submit</button> */}
+<Paper elevation={10} style={paperStyle}>
+  <Grid className='center'>
+  <Avatar className='align' style={avatarStyle} ><LockOutlinedIcon/></Avatar>
+      <h2>Sign up</h2>
+  </Grid>
+  <TextField label="Email" placeholder='Email' fullWidth required/>
+  <TextField label="Password" placeholder='Password' type="password" fullWidth required/>
+  <TextField label="confirm Password" placeholder='confirm Password' fullWidth required/>
+      <Button variant="contained" color="secondary" fullWidth style={buttonStyle} onClick={() => navigate('/') }>
+       SIGN UP </Button>
+      {/* <Typography>
+  <Link href="#">z
+    forgot password ?
+  </Link>
+</Typography> */}
+{/* <Typography>
+  Do you have an account ?
+  <Link href="#">
+   Sign up 
+  </Link>
+</Typography> */}
+</Paper>
+      </Grid>
+    
   )
 }
 

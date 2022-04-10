@@ -1,6 +1,6 @@
 import React from 'react';
-import { useNavigate,} from 'react-router-dom';
-import {Avatar, Grid,Paper, TextField,Link} from '@material-ui/core'
+import { useNavigate,Link} from 'react-router-dom';
+import {Avatar, Grid,Paper, TextField} from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -33,7 +33,7 @@ function LoginDemo() {
         }
         label="Remember me"
       />
-      <Button variant="contained" color="primary" fullWidth style={buttonStyle} onClick={() => navigate("../dashboard") }>
+      <Button variant="contained" color="primary" fullWidth style={buttonStyle} onClick={() => navigate("/dashboard") }>
        LOGIN
       </Button>
       {/* <Typography>
@@ -43,7 +43,7 @@ function LoginDemo() {
 </Typography> */}
 <Typography>
   Do you have an account ?
-  <Link href="#">
+  <Link to ="/signup">
    Sign up 
   </Link>
 </Typography>
