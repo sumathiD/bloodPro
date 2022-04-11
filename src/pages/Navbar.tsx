@@ -2,8 +2,7 @@ import * as React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
+import { TabContext, TabList } from '@mui/lab';
 
 
 export default function Navbar() {
