@@ -1,25 +1,59 @@
-import React from 'react';
+import * as React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import DonorsList from './DonorsList';
-import FindBloodGroup from './FindBloodGroup';
+import Box from '@mui/material/Box';
+import Tab from '@mui/material/Tab';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
 
-function Navbar() {
+
+export default function Navbar() {
+  const [value, setValue] = React.useState('1');
+
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    setValue(newValue);
+  };
+
   return (
-    <div>
-        {/* <nav>
+    <Box sx={{ width: '100%', alignItems:'center', typography: 'body1' }}>
+      {/* <nav>
             <NavLink style={{margin: '10px'}} to="findBloodGroup">Find Blood Group</NavLink> 
             <NavLink to="donorsList">Donors List</NavLink>
       </nav> */}
-        <ul className='navList'>
-            <li><Link to="findBloodGroup">Find a Blood Group</Link></li>
-            <li><Link to="registerDonar">Register Blood Group</Link></li>
-            <li><Link to="donorsList">Latest Donor list</Link></li>
-            <li><Link to="help">Help</Link></li>
-            <li><Link to="/">Login</Link></li>
-        </ul>
+      <TabContext value={value}>
+        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+          <TabList onChange={handleChange} aria-label="lab API tabs example">
+            <Tab component={Link} label="Find Blood Group" to="findBloodGroup" />
+            <Tab component={Link} label="Register Donor" to="registerDonor" />
+            <Tab component={Link} label="Donor List" to="donorsList" />
+            <Tab component={Link} label="Help" to="help" />
+            <Tab component={Link} label="Logout" to="/" />
+          </TabList>
+        </Box>
+       
+      </TabContext>
+    </Box>
+  );
+}
+
+/*
+function Navbar() {
+  return (
+    <div style={{textAlign: 'center', padding:'0 0 20px'}}>
+        { <nav>
+            <NavLink style={{margin: '10px'}} to="findBloodGroup">Find Blood Group</NavLink> 
+            <NavLink to="donorsList">Donors List</NavLink>
+      </nav> }
+
+
+      
+          <Link to="findBloodGroup">Find a Blood Group</Link>
+            <Link to="registerDonor">Register Blood Group</Link>
+            <Link to="donorsList">Latest Donor list</Link>
+            <Link to="help">Help</Link>
+            <Link to="/">Login</Link>
 
     </div>
   )
 }
 
-export default Navbar
+export default Navbar */

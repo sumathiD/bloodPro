@@ -1,18 +1,42 @@
+import { SaveOutlined, SearchOutlined } from '@material-ui/icons';
 import { useNavigate } from 'react-router-dom';
-import { SearchOutlined } from '@material-ui/icons';
 import { Grid, Paper, TextField } from '@material-ui/core'
 import Button from '@material-ui/core/Button';
 
 
-function FindBloodGroup() {
+function RegisterDonor() {
+
   let navigate = useNavigate();
-  const paperStyle = { padding: 20, width: 280, margin: '50px auto' };
+  const paperStyle = { padding: 20, height: '60vh', width: 280, margin: '20px auto' };
   const buttonStyle = { margin: '25px 0' }
+
+
   return (
-     
-      <Grid>
+    <Grid>
       <Paper elevation={10} style={paperStyle}>
-      <h2>Find Blood Group</h2>
+
+        <h2>Register Donor</h2>
+
+        <TextField
+          id="donorName"
+          name="donorName"
+          label="Name"
+          type="text"
+          fullWidth required />
+        <TextField
+          id="donorEmail"
+          name="donorEmail"
+          label="Email"
+          type="text"
+          fullWidth required />
+
+        <TextField
+          id="donorContact"
+          name="donorContact"
+          label="Contact Number"
+          type="number"
+          fullWidth required />
+
         <TextField
           id="donorBldType"
           name="donorBldType"
@@ -28,7 +52,7 @@ function FindBloodGroup() {
           fullWidth required />
 
         <Button
-          startIcon={<SearchOutlined />}
+          startIcon={<SaveOutlined />}
           size="large"
           onClick={() => navigate("../donorsList")}
           variant="contained"
@@ -39,8 +63,7 @@ function FindBloodGroup() {
         </Button>
       </Paper>
     </Grid>
-
   )
 }
 
-export default FindBloodGroup
+export default RegisterDonor

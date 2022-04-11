@@ -17,3 +17,10 @@ code {
   display: inline;
   padding: 20px;
 }
+
+.findBldG {
+  text-align: center;
+}
+.findBldG button { 
+  margin-top:  20px!important;
+}
