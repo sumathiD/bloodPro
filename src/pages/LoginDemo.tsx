@@ -22,8 +22,8 @@ function LoginDemo() {
   <Avatar className='align' style={avatarStyle} ><LockOutlinedIcon/></Avatar>
       <h2>Log in</h2>
   </Grid>
-  <TextField label="Email" placeholder='Email' fullWidth required/>
-  <TextField label="Password" placeholder='Password' type="password" fullWidth required/>
+  <TextField label="Email" placeholder='Email' fullWidth/>
+  <TextField label="Password" placeholder='Password' type="password" fullWidth />
   <FormControlLabel
         control={
           <Checkbox
