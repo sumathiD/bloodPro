@@ -10,18 +10,18 @@ import * as Yup from 'yup';
 import {useForm} from 'react-hook-form';
 import {Formik,Field,Form,ErrorMessage, useFormik} from 'formik';
 function Signup() {
-  const [values,setValues]=useState({
-    Email:'',
-    Password:"",
-    confirmPassword:""
-  })
+  // const [values,setValues]=useState({
+  //   Email:'',
+  //   Password:"",
+  //   confirmPassword:""
+  // })
 
-  const handleChange =(e:any) =>{
-  setValues({
-    ...values,
-    [e.target.name]:e.target.value, })
-  // console.log(e.target.name,e.target.value);
-  }
+  // const handleChange =(e:any) =>{
+  // setValues({
+  //   ...values,
+  //   [e.target.name]:e.target.value, })
+  // // console.log(e.target.name,e.target.value);
+  // }
 
   let navigate= useNavigate();
   const paperStyle={padding:20,height:'65vh',width:280,margin:'20px auto'};
