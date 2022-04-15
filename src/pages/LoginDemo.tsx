@@ -52,8 +52,8 @@ function LoginDemo() {
             localStorage.setItem('user', JSON.stringify(res.data));
             console.log('login response data :', res.data);
             console.log('login jwt :', res.data.access_token);
-            // navigate('/dashboard');
-            // window.location.reload();
+            navigate('/dashboard');
+            window.location.reload();
             axios.get(`http://localhost:3000/donors`)
             .then((res1: any) => {
               console.log('donors',res1);
