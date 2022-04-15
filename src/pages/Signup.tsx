@@ -53,8 +53,8 @@ function Signup() {
         "password": values.Password
       })
         .then(res => {
-          console.log(res);
-          console.log(res.data);
+          console.log('signup1',res);
+          console.log('signup2',res.data);
           navigate("/login")
         })
     },

@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import axios from 'axios';
+import { userInfo } from 'os';
 
 
 const validationSchema = yup.object({
@@ -17,9 +18,9 @@ const validationSchema = yup.object({
     // .email("Enter valid email")
     .required("email required"),
   Password: yup
-  .string()
-  .required(" password required ")
-  
+    .string()
+    .required(" password required ")
+
 })
 
 function LoginDemo() {
@@ -39,25 +40,56 @@ function LoginDemo() {
     onSubmit: (values) => {
       console.log(values.Email, values.Password);
 
+     
+
       axios.post(`http://localhost:3000/auth/login`, {
         "username": values.Email,
         "password": values.Password
       })
         .then((res: any) => {
-          // localStorage.setItem{'login', JSON.stringify(
-          //   {
-          //     login: true,
-          //     token: res.data.access_token
-          //   }
-          // )
 
-          
-          console.log(res);
-          console.log(res.data.access_token);
-        })
+          if (res.data.access_token) {
+            localStorage.setItem('user', JSON.stringify(res.data));
+            console.log('login response data :', res.data);
+            console.log('login jwt :', res.data.access_token);
+            // navigate('/dashboard');
+            // window.location.reload();
+            axios.get(`http://localhost:3000/donors`)
+            .then((res1: any) => {
+              console.log('donors',res1);
+            }
+            )
+          }         
+        },
+        (error:any) => {
+          console.log(error);
+          alert('not authorized user')
+        }
+        )
+
+
+        
+        
+
+      // localStorage.setItem{'login', JSON.stringify(
+      //   {
+      //     login: true,
+      //     token: res.data.access_token
+      //   }
+      // )          
+      // return { Authorization: 'Bearer ' + res.data.access_token}
+
+
+      // if(res.data.access_token){
+      //   localStorage.setItem('user',JSON.stringify(res.data));
+      //   console.log('login1',res);
+      // console.log('login2',res.data);
+      // console.log('login3',res.data.access_token)
+      // }
+
     }
   })
-  
+
   return (
     <Grid>
       {/* <input type="text"></input><br/><br/>
