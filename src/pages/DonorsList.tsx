@@ -1,10 +1,12 @@
-import * as React from 'react';
+import React from 'react'; 
+import { useState, useEffect } from "react";
 import {Avatar } from '@material-ui/core'
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
+import axios from 'axios';
 
 const Img = styled('img')({
   margin: 'auto',
@@ -14,8 +16,22 @@ const Img = styled('img')({
 });
 
 export default function DonorsList() {
+  
+  const [dataval, setDataval] = useState([]);
+
+useEffect(() => {
+  axios.get(`http://localhost:3000/donors`)
+  .then((res) => {
+    setDataval(res.data)
+    console.log('donors',res.data);
+  })
+})
+
   return (
     <>
+     {dataval.length > 0 && 
+      alert('entered to donors list')
+    }
     <h2 style={{textAlign: 'center'}}>Donors List</h2>
     <Paper
       sx={{
