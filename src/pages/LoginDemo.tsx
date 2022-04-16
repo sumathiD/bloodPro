@@ -40,36 +40,31 @@ function LoginDemo() {
     onSubmit: (values) => {
       console.log(values.Email, values.Password);
 
-     
-
       axios.post(`http://localhost:3000/auth/login`, {
         "username": values.Email,
         "password": values.Password
       })
-        .then((res: any) => {
+      .then((res: any) => {
 
           if (res.data.access_token) {
-            localStorage.setItem('user', JSON.stringify(res.data));
+
+            localStorage.setItem('user', res.data.access_token);
+
             console.log('login response data :', res.data);
             console.log('login jwt :', res.data.access_token);
+
             navigate('/dashboard');
-            window.location.reload();
-            axios.get(`http://localhost:3000/donors`)
-            .then((res1: any) => {
-              console.log('donors',res1);
-            }
-            )
-          }         
+          }
         },
-        (error:any) => {
-          console.log(error);
-          alert('not authorized user')
-        }
+          (error: any) => {
+            console.log(error);
+            alert('not authorized user')
+          }
         )
 
 
-        
-        
+
+
 
       // localStorage.setItem{'login', JSON.stringify(
       //   {

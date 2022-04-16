@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import axios from 'axios';
 
 
 const validationSchema = yup.object({
@@ -40,12 +41,54 @@ function RegisterDonor() {
     onSubmit: (values) => {
       // axios.post('')
       // alert(JSON.stringify(values, null, 2));
+      
+      const token = localStorage.getItem('user');
+      
+
+      const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+
+
+      fetch(`http://localhost:3000/donors`, {
+        method: 'POST',      
+        headers,
+        body: JSON.stringify({
+          "name": values.donorname,
+          "mailId":values.email,
+          "contact": values.contact,
+          "bloodGroup": values.bloodtype,
+          "place": values.placename
+        }),     
+      })
+        .then((res01: any) => {
+
+          // if (res01.data.access_token) {
+           
+            console.log('login response data :', res01.data);
+            // console.log('login jwt :', res01.data.access_token);
+
+            // navigate('/dashboard');
+            // window.location.reload();
+          // }      
+        },
+        (error:any) => {
+          console.log(error);
+          alert('CHECK ERROR!')
+        }
+        )
+
     },
   });
 
   let navigate = useNavigate();
   const paperStyle = { padding: 20, height: '60vh', width: 280, margin: '20px auto' };
   const buttonStyle = { margin: '25px 0' }
+
+
+ 
+
 
 
   return (
