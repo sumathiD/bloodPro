@@ -23,17 +23,7 @@ const validationSchema = yup.object({
   confirmPassword: yup.string().oneOf([yup.ref('Password')], "password not matched").required("required")
 })
 function Signup() {
-  // const [values,setValues]=useState({
-  //   Email:'',
-  //   Password:"",
-  //   confirmPassword:""
-  // })
-  // const handleChange =(e:any) =>{
-  // setValues({
-  //   ...values,
-  //   [e.target.name]:e.target.value, })
-  // // console.log(e.target.name,e.target.value);
-  // }
+
   let navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -59,13 +49,9 @@ function Signup() {
         })
     },
   })
-  // const onSubmit=(values:any,props:any)=>(
-  //   console.log(values)
-  // )
+ 
   return (
     <Grid>
-      {/* <input type="text"></input><br/><br/>
-       <button onClick={() => navigate("../dashboard") }>submit</button> */}
       <Paper elevation={10} style={paperStyle}>
         <Grid className='center'>
           <Avatar className='align' style={avatarStyle} ><LockOutlinedIcon /></Avatar>

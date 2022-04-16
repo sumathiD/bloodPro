@@ -1,6 +1,6 @@
-import React from 'react'; 
+import React from 'react';
 import { useState, useEffect } from "react";
-import {Avatar } from '@material-ui/core'
+import { Avatar } from '@material-ui/core'
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
@@ -16,103 +16,127 @@ const Img = styled('img')({
 });
 
 export default function DonorsList() {
-  
-  const [dataval, setDataval] = useState([]);
 
-useEffect(() => {
-  axios.get(`http://localhost:3000/donors`)
-  .then((res) => {
-    setDataval(res.data)
-    console.log('donors',res.data);
-  })
-})
+  const [dataval, setDataval] = useState([]);
+  const [msg, setMsg] = useState('');
+
+  useEffect(() => {
+
+    const token = localStorage.getItem('user');
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+    axios.get(`http://localhost:3000/donors`,
+      { headers }
+    )
+      .then((res) => {
+        setDataval(res.data)
+        console.log('donors', res.data);
+      })
+  }, [] )
+
 
   return (
     <>
-     {dataval.length > 0 && 
-      alert('entered to donors list')
-    }
-    <h2 style={{textAlign: 'center'}}>Donors List</h2>
-    <Paper
-      sx={{
-        p: 2,
-        margin: 'auto',
-        maxWidth: 500,
-        flexGrow: 1,
-        backgroundColor: (theme) =>
-          theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-      }}
-    >
-      <Grid container spacing={2}>
-        <Grid item>
-          <ButtonBase sx={{ width: 158, height: 128 }}>
-          <Avatar className='align01' ></Avatar>
-          </ButtonBase>
-        </Grid>
-        <Grid item xs={12} sm container>
-          <Grid item xs container direction="column" spacing={2}>
-            <Grid item xs>
-              <Typography gutterBottom variant="subtitle1" component="div">
-                Name : Sumathi
-              </Typography>
-              <Typography variant="body2" gutterBottom>
-               B. Type : O positive
-              </Typography>
-              <Typography variant="body2">
-                Place : Chennai
-              </Typography>
+     <button onClick={() => setMsg('Temp')}>temp</button>
+
+      <h2 style={{ textAlign: 'center' }}>Donors List</h2>
+      <Paper
+        sx={{
+          p: 2,
+          margin: 'auto',
+          maxWidth: 500,
+          flexGrow: 1,
+          backgroundColor: (theme) =>
+            theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+        }}
+      >
+
+        {/* "name": values.donorname,
+        "mailId":values.email,
+        "contact": values.contact,
+        "bloodGroup": values.bloodtype,
+        "place": values.placename */}
+
+        {/* <ul>
+  <li>{name}</li>
+  <li>{mailId}</li>
+  <li>{contact}</li>
+  <li>{bloodGroup}</li>
+  <li>{place}</li>
+</ul> */}
+
+        <Grid container spacing={2}>
+          <Grid item>
+            <ButtonBase sx={{ width: 158, height: 128 }}>
+              <Avatar className='align01' ></Avatar>
+            </ButtonBase>
+          </Grid>
+          <Grid item xs={12} sm container>
+            <Grid item xs container direction="column" spacing={2}>
+              <Grid item xs>
+                <Typography gutterBottom variant="subtitle1" component="div">
+                  Name : Sumathi
+                </Typography>
+                <Typography variant="body2" gutterBottom>
+                  B. Type : O positive
+                </Typography>
+                <Typography variant="body2">
+                  Place : Chennai
+                </Typography>
+              </Grid>
+
             </Grid>
-            
           </Grid>
         </Grid>
-      </Grid>
-      <Grid container spacing={2}>
-        <Grid item>
-          <ButtonBase sx={{ width: 158, height: 128 }}>
-          <Avatar className='align01' ></Avatar>
-          </ButtonBase>
-        </Grid>
-        <Grid item xs={12} sm container>
-          <Grid item xs container direction="column" spacing={2}>
-            <Grid item xs>
-              <Typography gutterBottom variant="subtitle1" component="div">
-                Name : Sumathi
-              </Typography>
-              <Typography variant="body2" gutterBottom>
-               B. Type : O positive
-              </Typography>
-              <Typography variant="body2">
-                Place : Chennai
-              </Typography>
+        <Grid container spacing={2}>
+          <Grid item>
+            <ButtonBase sx={{ width: 158, height: 128 }}>
+              <Avatar className='align01' ></Avatar>
+            </ButtonBase>
+          </Grid>
+          <Grid item xs={12} sm container>
+            <Grid item xs container direction="column" spacing={2}>
+              <Grid item xs>
+                <Typography gutterBottom variant="subtitle1" component="div">
+                  Name : Sumathi
+                </Typography>
+                <Typography variant="body2" gutterBottom>
+                  B. Type : O positive
+                </Typography>
+                <Typography variant="body2">
+                  Place : Chennai
+                </Typography>
+              </Grid>
+
             </Grid>
-            
           </Grid>
         </Grid>
-      </Grid>
-      <Grid container spacing={2}>
-        <Grid item>
-          <ButtonBase sx={{ width: 158, height: 128 }}>
-          <Avatar className='align01' ></Avatar>
-          </ButtonBase>
-        </Grid>
-        <Grid item xs={12} sm container>
-          <Grid item xs container direction="column" spacing={2}>
-            <Grid item xs>
-              <Typography gutterBottom variant="subtitle1" component="div">
-                Name : Sumathi
-              </Typography>
-              <Typography variant="body2" gutterBottom>
-               B. Type : O positive
-              </Typography>
-              <Typography variant="body2">
-                Place : Chennai
-              </Typography>
+        <Grid container spacing={2}>
+          <Grid item>
+            <ButtonBase sx={{ width: 158, height: 128 }}>
+              <Avatar className='align01' ></Avatar>
+            </ButtonBase>
+          </Grid>
+          <Grid item xs={12} sm container>
+            <Grid item xs container direction="column" spacing={2}>
+              <Grid item xs>
+                <Typography gutterBottom variant="subtitle1" component="div">
+                  Name : Sumathi
+                </Typography>
+                <Typography variant="body2" gutterBottom>
+                  B. Type : O positive
+                </Typography>
+                <Typography variant="body2">
+                  Place : Chennai
+                </Typography>
+              </Grid>
+
             </Grid>
-            
           </Grid>
         </Grid>
-      </Grid>
-    </Paper>
+      </Paper>
     </>
   );
 }
