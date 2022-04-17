@@ -1,11 +1,22 @@
 import { useNavigate } from 'react-router-dom';
 import { SearchOutlined } from '@material-ui/icons';
-import { Grid, Paper, TextField } from '@material-ui/core'
+import { ButtonBase, Grid, Paper, TextField } from '@material-ui/core'
+import { Avatar } from '@material-ui/core';
+import { styled } from '@mui/material/styles';
 import Button from '@material-ui/core/Button';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import { useState } from 'react';
+import Typography from '@mui/material/Typography';
+
+
+const Img = styled('img')({
+  margin: 'auto',
+  display: 'block',
+  maxWidth: '100%',
+  maxHeight: '100%',
+});
 
 const validationSchema = yup.object({
   donorBldType: yup
@@ -22,7 +33,7 @@ function FindBloodGroup() {
   const paperStyle = { padding: 20, width: 280, margin: '50px auto' };
   const buttonStyle = { margin: '25px 0' }
 
-  const [findval, setFindval] = useState([] as any[]);
+  const [results, setResults] = useState([] as any[]);
 
   const formik = useFormik({
     initialValues: {
@@ -33,19 +44,17 @@ function FindBloodGroup() {
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
       
-      const token = localStorage.getItem('user');      
+      const token = localStorage.getItem('user');  
+      console.log('Toekn id',token);    
       const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       }
-
-     fetch(`http://localhost:3000/donors/search?bloodgroup=${values.donorBldType}&place=${values.donorPlace}`, {
-        method: 'GET',      
-        headers    
-      })
-        .then((bgData: any) => {
-          setFindval(bgData.data);
-            console.log('Find BG data :', JSON.stringify(bgData.data));
+         axios.get(`http://localhost:3000/donors/search?bloodgroup=${values.donorBldType}&place=${values.donorPlace}`, 
+         { headers })
+        .then((response: any) => {
+          setResults(response.data);
+            console.log('Find results :', JSON.stringify(response.data));
             // navigate('../donorsList');
         },
         (error:any) => {
@@ -102,14 +111,45 @@ function FindBloodGroup() {
         </form>
       </Paper>
     </Grid>
-<h3>Search Results: </h3>
+<h3 style={{textAlign:'center'}}>Search Results: </h3>
 
-    {findval && findval.map((bdglist) => (
-  <ul key="bdglist.id">
-    <li>{bdglist.name}</li>
-  </ul>
+    {results && results.map((result) => (
+  // <ul key="result.id">
+  //   <li>{result.name}</li>
+  // </ul>
+
+  <div className='donorList'>
+<Grid container spacing={1} key="userdata.id">
+<Paper elevation={10} style={paperStyle}>
+            <Grid item xs={12} sm container>
+              <Grid item xs container direction="column" spacing={1}>
+                <Grid item xs>
+                  <Typography gutterBottom variant="subtitle1" component="div">
+                    <span className='donorLabel'>Name</span> : {result.name}
+                  </Typography>
+                  <Typography variant="body2" gutterBottom>
+                    <span className='donorLabel'>Email </span> : {result.mailId}
+                  </Typography>
+                  <Typography variant="body2">
+                    <span className='donorLabel'>Contact </span> : {result.contact}
+                  </Typography>
+                  <Typography variant="body2">
+                    <span className='donorLabel'> Blood Group </span> : {result.bloodGroup}
+                  </Typography>
+                  <Typography variant="body2">
+                    <span className='donorLabel'>Place </span> : {result.place}
+                  </Typography>
+                  <Typography variant="body2">
+                    <span className='donorLabel'>  </span> 
+                  </Typography>
+                </Grid>
+
+              </Grid>
+            </Grid>
+            </Paper>
+          </Grid>
+          </div>
 ))}
-
     </div>
   )
 }
