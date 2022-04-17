@@ -39,17 +39,14 @@ function RegisterDonor() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      // axios.post('')
       // alert(JSON.stringify(values, null, 2));
       
       const token = localStorage.getItem('user');
       
-
       const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       }
-
 
       fetch(`http://localhost:3000/donors`, {
         method: 'POST',      
@@ -63,19 +60,13 @@ function RegisterDonor() {
         }),     
       })
         .then((res01: any) => {
-
-          // if (res01.data.access_token) {
-           
-            console.log('login response data :', res01.data);
+            console.log('res01 data :', res01.data);
             // console.log('login jwt :', res01.data.access_token);
-
-            // navigate('/dashboard');
-            // window.location.reload();
-          // }      
+            navigate('../donorsList');
         },
         (error:any) => {
           console.log(error);
-          alert('CHECK ERROR!')
+          alert('CHECK the ERROR!');
         }
         )
 
@@ -85,11 +76,6 @@ function RegisterDonor() {
   let navigate = useNavigate();
   const paperStyle = { padding: 20, height: '60vh', width: 280, margin: '20px auto' };
   const buttonStyle = { margin: '25px 0' }
-
-
- 
-
-
 
   return (
     <Grid>
@@ -160,148 +146,3 @@ function RegisterDonor() {
 }
 
 export default RegisterDonor
-
-
-/*
-
-function RegisterDonor() {
-  const options = [
-    { key: 'Email', value: 'emailmoc' },
-    { key: 'Telephone', value: 'telephonemoc' }
-  ]
-  const initialValues = {
-    // donorname: string,
-    // email: string,
-    // phoneno: number
-    donorname:'John',
-    email: 'foobar@example.com',
-    phoneno: '12345',
-  }
-
-  const validationSchema = yup.object({
-    donorname: yup
-      .string()
-      .required('Email is required'),
-    email: yup
-      .string()
-      .email('Enter a valid email')
-      .required('Email is required'),
-    phoneno: yup
-      .number()
-      .required('Phone number is required')
-  });
-
-  const onSubmit = (values: any) => {
-    console.log('Form data', values);
-  }
-
-
-  const formik = useFormik({
-    initialValues: {
-      initialValues
-    },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
-  });
-
-  let navigate = useNavigate();
-  const paperStyle = { padding: 20, height: '60vh', width: 280, margin: '20px auto' };
-  const buttonStyle = { margin: '25px 0' }
-
-  return (
-
-
-    <Grid>
-      <Paper elevation={10} style={paperStyle}>
-
-        <h2>Register Donor</h2>
-
-        <form onSubmit={formik.handleSubmit}>
-          <TextField
-            fullWidth
-            id="email"
-            name="email"
-            label="Email"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            error={formik.touched.email && Boolean(formik.errors.email)}
-            helperText={formik.touched.email && formik.errors.email}
-          />
-          <TextField
-            fullWidth
-            id="donorname"
-            name="donorname"
-            label="DonorName"
-            type="text"
-            value={formik.values.donorname}
-            onChange={formik.handleChange}
-            error={formik.touched.donorname && Boolean(formik.errors.donorname)}
-            helperText={formik.touched.donorname && formik.errors.donorname}
-          />
-
-          <TextField
-            id="donorContact"
-            name="donorContact"
-            label="Contact Number"
-            type="number"
-            fullWidth required />
-
-          <Button color="primary" variant="contained" fullWidth type="submit">
-            Submit
-          </Button>
-        </form>
-
-
-        <TextField
-          id="donorName"
-          name="donorName"
-          label="Name"
-          type="text"
-          fullWidth required />
-        <TextField
-          id="donorEmail"
-          name="donorEmail"
-          label="Email"
-          type="text"
-          fullWidth required />
-
-        <TextField
-          id="donorContact"
-          name="donorContact"
-          label="Contact Number"
-          type="number"
-          fullWidth required />
-
-        <TextField
-          id="donorBldType"
-          name="donorBldType"
-          label="Blood Type"
-          type="text"
-          fullWidth required />
-
-        <TextField
-          id="donorPlace"
-          name="donorPlace"
-          label="Place"
-          type="text"
-          fullWidth required />
-
-        <Button
-          startIcon={<SaveOutlined />}
-          size="large"
-          onClick={() => navigate("../donorsList")}
-          variant="contained"
-          color="primary"
-          fullWidth style={buttonStyle}
-        >
-          Register
-        </Button>
-      </Paper>
-    </Grid>
-
-  )
-}
-
-*/

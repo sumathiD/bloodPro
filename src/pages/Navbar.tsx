@@ -21,6 +21,7 @@ export default function Navbar() {
   };
 
   return (
+    <div className='navBar'>
     <Box sx={{ width: '100%', alignItems:'center', typography: 'body1' }}>
       {/* <nav>
             <NavLink style={{margin: '10px'}} to="findBloodGroup">Find Blood Group</NavLink> 
@@ -39,6 +40,7 @@ export default function Navbar() {
        
       </TabContext>
     </Box>
+    </div>
   );
 }
 
