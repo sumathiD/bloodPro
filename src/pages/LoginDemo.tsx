@@ -44,15 +44,29 @@ function LoginDemo() {
         "username": values.Email,
         "password": values.Password
       })
+    //   const token = localStorage.getItem('user');
+ 
+    // const headers = {
+    //     'Content-Type': 'application/json',
+    //     'Authorization': `Bearer ${token}`
+    //   };
+
+    //   fetch(`http://localhost:3000/auth/login`, {
+    //     method: 'POST', 
+    //     headers,
+    //     body: JSON.stringify({
+    //     "username": values.Email,
+    //     "password": values.Password
+    //     })
+    //   })
       .then((res: any) => {
+        // alert('entering into res area');
 
           if (res.data.access_token) {
-
+            // alert('entered into res data if condition')
             localStorage.setItem('user', res.data.access_token);
-
             console.log('login response data :', res.data);
             console.log('login jwt :', res.data.access_token);
-
             navigate('/dashboard');
           }
         },

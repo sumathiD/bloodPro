@@ -38,11 +38,34 @@ function Signup() {
       //   "password": values.Password
       // }).then()
       // alert(JSON.stringify(values, null, 2));
-      axios.post(`http://localhost:3000/user/register`, {
+     
+     
+    //   axios.post(`http://localhost:3000/user/register`, {
+    //     "username": values.Email,
+    //     "password": values.Password
+    //   })
+    //     .then(res => {
+    //       console.log('signup1',res);
+    //       console.log('signup2',res.data);
+    //       navigate("/login")
+    //     })
+    // },
+
+      const headers = {
+        'Content-Type': 'application/json',
+        // "key": "Content-Type",
+        // "value": "application/json",
+        // "type": "default"
+      }
+      fetch(`http://localhost:3000/user/register`, {
+        method: 'POST', 
+        headers,
+        body: JSON.stringify({
         "username": values.Email,
         "password": values.Password
+        })
       })
-        .then(res => {
+        .then((res: any) => {
           console.log('signup1',res);
           console.log('signup2',res.data);
           navigate("/login")
@@ -57,8 +80,8 @@ function Signup() {
           <Avatar className='align' style={avatarStyle} ><LockOutlinedIcon /></Avatar>
           <h2>Sign up</h2>
         </Grid>
-        <form onSubmit={formik.handleSubmit}>
-          <TextField
+        <form onSubmit={formik.handleSubmit} autoComplete='off'>
+          <TextField autoComplete='off'
             fullWidth
             label="Email"
             placeholder='Email'
