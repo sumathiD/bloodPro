@@ -25,29 +25,6 @@ function App() {
           <Route path="help" element={<Help />} />
         </Route>
       </Routes>
-
-
-
-
-      {/* <BrowserRouter>
-    <Routes>
-      <Route path="/" element= { <LoginDemo /> } />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-    </Routes>
-    </BrowserRouter>
-     <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<SignIn />} />
-      <Route path="/singup" element={<Signup />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-     
-      <Route path="/registerDonor" element={<RegisterDonor />} />
-    
-      <Route path="/donorDetails" element={<DonorDetails />} />
-      <Route path="/help" element={<Help />} />
-    </Routes>
-  </BrowserRouter> */}
     </div>
   );
 }

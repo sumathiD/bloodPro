@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDonors } from '../redux/features/donorsList01';
+import { getDonors } from '../redux/features/donorsListFeature';
 
 const Img = styled('img')({
   margin: 'auto',

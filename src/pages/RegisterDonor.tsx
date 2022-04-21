@@ -45,12 +45,7 @@ function RegisterDonor() {
       alert(JSON.stringify(values, null, 2));
       
       const token = localStorage.getItem('user');
-      
-      // const headers = {
-      //   'Content-Type': 'application/json',
-      //   'Authorization': `Bearer ${token}`
-      // }
-
+     
       fetch(`http://localhost:3000/donors`, {
         method: 'POST',      
         headers,
@@ -64,7 +59,6 @@ function RegisterDonor() {
       })
         .then((res01: any) => {
             console.log('res01 data :', res01.data);
-            // console.log('login jwt :', res01.data.access_token);
             navigate('../donorsList');
         },
         (error:any) => {

@@ -7,14 +7,15 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import * as yup from 'yup';
-// import {useForm} from 'react-hook-form';
 import { Formik, Field, Form, ErrorMessage, useFormik } from 'formik';
 import axios from 'axios';
 import AuthService from '../services/AuthService';
 
+
 const paperStyle = { padding: 20, height: '65vh', width: 280, margin: '20px auto' };
 const buttonStyle = { margin: '8px 0' }
 const avatarStyle = { backgroundColor: "#305281" }
+
 const validationSchema = yup.object({
   Email: yup
     .string()
@@ -23,6 +24,8 @@ const validationSchema = yup.object({
   Password: yup.string().min(3, "Enter valid email").required(" password required "),
   confirmPassword: yup.string().oneOf([yup.ref('Password')], "password not matched").required("required")
 })
+
+
 function Signup() {
 
   let navigate = useNavigate();
@@ -34,45 +37,22 @@ function Signup() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      
+     
       const username: any = values.Email;
       const password: any = values.Password;
 
-
       AuthService.signup(username, password).then(
         (response) => {
-            console.log("Sign up successfully", response);
-          navigate("/login")
-          // window.location.reload();
+          console.log("Sign up successfully", response);
+          navigate("/login");        
         },
         (error) => {
           console.log(error);
         }
       );
-    }      
-    //   const headers = {
-    //     'Content-Type': 'application/json',
-    //   }
-    //   fetch(`http://localhost:3000/user/register`, {
-    //     method: 'POST', 
-    //     headers,
-    //     body: JSON.stringify({
-    //     "username": values.Email,
-    //     "password": values.Password
-    //     })
-    //   })
-    //     .then((res: any) => {
-    //       console.log('signup1',res);
-    //       console.log('signup2',res.data);
-    //       navigate("/login")
-    //     })
-    // },
-
-
-
-
+    }
   })
- 
+
   return (
     <Grid>
       <Paper elevation={10} style={paperStyle}>
