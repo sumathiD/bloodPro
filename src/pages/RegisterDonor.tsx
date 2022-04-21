@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import axios from 'axios';
-
+import { authHeader } from '../services/authHeader';
 
 const validationSchema = yup.object({
   donorname: yup
@@ -29,6 +29,9 @@ const validationSchema = yup.object({
 
 function RegisterDonor() {
 
+  console.log('auth header :', authHeader());
+  const headers:any = authHeader();
+
   const formik = useFormik({
     initialValues: {
       donorname:'',
@@ -39,14 +42,14 @@ function RegisterDonor() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      // alert(JSON.stringify(values, null, 2));
+      alert(JSON.stringify(values, null, 2));
       
       const token = localStorage.getItem('user');
       
-      const headers = {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      }
+      // const headers = {
+      //   'Content-Type': 'application/json',
+      //   'Authorization': `Bearer ${token}`
+      // }
 
       fetch(`http://localhost:3000/donors`, {
         method: 'POST',      

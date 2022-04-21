@@ -10,6 +10,7 @@ import * as yup from 'yup';
 // import {useForm} from 'react-hook-form';
 import { Formik, Field, Form, ErrorMessage, useFormik } from 'formik';
 import axios from 'axios';
+import AuthService from '../services/AuthService';
 
 const paperStyle = { padding: 20, height: '65vh', width: 280, margin: '20px auto' };
 const buttonStyle = { margin: '8px 0' }
@@ -33,44 +34,43 @@ function Signup() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      // axios.post('/user/register',{
-      //   "username": values.Email,
-      //   "password": values.Password
-      // }).then()
-      // alert(JSON.stringify(values, null, 2));
-     
-     
-    //   axios.post(`http://localhost:3000/user/register`, {
+      
+      const username: any = values.Email;
+      const password: any = values.Password;
+
+
+      AuthService.signup(username, password).then(
+        (response) => {
+            console.log("Sign up successfully", response);
+          navigate("/login")
+          // window.location.reload();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }      
+    //   const headers = {
+    //     'Content-Type': 'application/json',
+    //   }
+    //   fetch(`http://localhost:3000/user/register`, {
+    //     method: 'POST', 
+    //     headers,
+    //     body: JSON.stringify({
     //     "username": values.Email,
     //     "password": values.Password
+    //     })
     //   })
-    //     .then(res => {
+    //     .then((res: any) => {
     //       console.log('signup1',res);
     //       console.log('signup2',res.data);
     //       navigate("/login")
     //     })
     // },
 
-      const headers = {
-        'Content-Type': 'application/json',
-        // "key": "Content-Type",
-        // "value": "application/json",
-        // "type": "default"
-      }
-      fetch(`http://localhost:3000/user/register`, {
-        method: 'POST', 
-        headers,
-        body: JSON.stringify({
-        "username": values.Email,
-        "password": values.Password
-        })
-      })
-        .then((res: any) => {
-          console.log('signup1',res);
-          console.log('signup2',res.data);
-          navigate("/login")
-        })
-    },
+
+
+
   })
  
   return (

@@ -10,6 +10,7 @@ import * as yup from 'yup';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import { userInfo } from 'os';
+import AuthServices from '../services/AuthService';
 
 
 const validationSchema = yup.object({
@@ -38,63 +39,40 @@ function LoginDemo() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      console.log(values.Email, values.Password);
+      const username: any = values.Email;
+      const password: any = values.Password;
 
-      axios.post(`http://localhost:3000/auth/login`, {
-        "username": values.Email,
-        "password": values.Password
-      })
-    //   const token = localStorage.getItem('user');
- 
-    // const headers = {
-    //     'Content-Type': 'application/json',
-    //     'Authorization': `Bearer ${token}`
-    //   };
-
-    //   fetch(`http://localhost:3000/auth/login`, {
-    //     method: 'POST', 
-    //     headers,
-    //     body: JSON.stringify({
-    //     "username": values.Email,
-    //     "password": values.Password
-    //     })
-    //   })
-      .then((res: any) => {
-        // alert('entering into res area');
-
-          if (res.data.access_token) {
-            // alert('entered into res data if condition')
-            localStorage.setItem('user', res.data.access_token);
-            console.log('login response data :', res.data);
-            console.log('login jwt :', res.data.access_token);
-            navigate('/dashboard');
-          }
+      AuthServices.login(username, password).then(
+        () => {
+          navigate('/dashboard');
         },
-          (error: any) => {
-            console.log(error);
-            alert('not authorized user')
-          }
-        )
+        (error) => {
+          // console.log(error);
+          alert(error);
+        }
+      )
 
+      // console.log(values.Email, values.Password);
 
+      // axios.post(`http://localhost:3000/auth/login`, {
+      //   "username": values.Email,
+      //   "password": values.Password
+      // })
+      //   .then((res: any) => {
 
+      //     if (res.data.access_token) {
+      //       localStorage.setItem('user', res.data.access_token);
+      //       console.log('login response data :', res.data);
+      //       console.log('login jwt :', res.data.access_token);
+      //       navigate('/dashboard');
+      //     }
+      //   },
+      //     (error: any) => {
+      //       console.log(error);
+      //       alert('not authorized user')
+      //     }
+      //   )
 
-
-      // localStorage.setItem{'login', JSON.stringify(
-      //   {
-      //     login: true,
-      //     token: res.data.access_token
-      //   }
-      // )          
-      // return { Authorization: 'Bearer ' + res.data.access_token}
-
-
-      // if(res.data.access_token){
-      //   localStorage.setItem('user',JSON.stringify(res.data));
-      //   console.log('login1',res);
-      // console.log('login2',res.data);
-      // console.log('login3',res.data.access_token)
-      // }
 
     }
   })
