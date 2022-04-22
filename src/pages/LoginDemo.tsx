@@ -8,8 +8,6 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-import axios from 'axios';
-import { userInfo } from 'os';
 import AuthServices from '../services/AuthService';
 
 
@@ -51,36 +49,11 @@ function LoginDemo() {
           alert(error);
         }
       )
-
-      // console.log(values.Email, values.Password);
-
-      // axios.post(`http://localhost:3000/auth/login`, {
-      //   "username": values.Email,
-      //   "password": values.Password
-      // })
-      //   .then((res: any) => {
-
-      //     if (res.data.access_token) {
-      //       localStorage.setItem('user', res.data.access_token);
-      //       console.log('login response data :', res.data);
-      //       console.log('login jwt :', res.data.access_token);
-      //       navigate('/dashboard');
-      //     }
-      //   },
-      //     (error: any) => {
-      //       console.log(error);
-      //       alert('not authorized user')
-      //     }
-      //   )
-
-
     }
   })
 
   return (
     <Grid>
-      {/* <input type="text"></input><br/><br/>
-       <button onClick={() => navigate("../dashboard") }>submit</button> */}
       <Paper elevation={10} style={paperStyle}>
         <Grid className='center'>
           <Avatar className='align' style={avatarStyle} ><LockOutlinedIcon /></Avatar>
@@ -126,20 +99,7 @@ function LoginDemo() {
             type='submit'>
             Login
           </Button>
-          {/* <Button 
-          variant="contained" 
-          color="primary" 
-          fullWidth 
-          style={buttonStyle} 
-          onClick={() => navigate("/dashboard")}>
-          LOGIN
-        </Button> */}
         </form>
-        {/* <Typography>
-  <Link href="#">
-    forgot password ?
-  </Link>
-</Typography> */}
         <Typography>
           Do you have an account ?
           <Link to="/signup">

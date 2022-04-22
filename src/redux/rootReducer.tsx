@@ -1,9 +1,7 @@
-// import regDonorListSlice from "./features/registerDonorFeature";
-import donorListSlice from "./features/donorsListFeature";
+import donorListSlice from "./features/donorSlice";
 
 const rootReducer = {
-    // regdonor: regDonorListSlice,
-    donors: donorListSlice,    
+    donors: donorListSlice,
 }
 
 export default rootReducer;

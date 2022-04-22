@@ -8,6 +8,7 @@ import LoginDemo from './LoginDemo';
 import DonorsList from './DonorsList';
 
 function Dashboard() {
+
   let navigate = useNavigate();
   useEffect(() => {
     const token = localStorage.getItem('user');
@@ -18,8 +19,8 @@ function Dashboard() {
 
   return (
     <div>
-        <Navbar />
-       
+      
+        <Navbar />       
         <Outlet />
   
     </div>

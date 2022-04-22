@@ -1,6 +1,5 @@
 export const authHeader = () => {
   
-
     if (localStorage.getItem('user')) {
         return {
             'Content-Type': 'application/json',

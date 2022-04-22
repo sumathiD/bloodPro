@@ -7,9 +7,14 @@ import Button from '@material-ui/core/Button';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Typography from '@mui/material/Typography';
+import { authHeader } from '../services/authHeader';
+import { useDispatch, useSelector } from 'react-redux';
+import { findDonors } from '../redux/features/donorSlice';
 
+
+const headers:any = authHeader();
 
 const Img = styled('img')({
   margin: 'auto',
@@ -30,10 +35,14 @@ const validationSchema = yup.object({
 function FindBloodGroup() {
 
   let navigate = useNavigate();
+  let dispatch = useDispatch();
   const paperStyle = { padding: 20, width: 280, margin: '50px auto' };
   const buttonStyle = { margin: '25px 0' }
 
-  const [results, setResults] = useState([] as any[]);
+    
+  let { loading, errorMessage, donors } = useSelector((store: any) => {
+    return store["donors"];
+  });
 
   const formik = useFormik({
     initialValues: {
@@ -44,24 +53,7 @@ function FindBloodGroup() {
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
       
-      const token = localStorage.getItem('user');  
-      console.log('Toekn id',token);    
-      const headers = {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      }
-         axios.get(`http://localhost:3000/donors/search?bloodgroup=${values.donorBldType}&place=${values.donorPlace}`, 
-         { headers })
-        .then((response: any) => {
-          setResults(response.data);
-            console.log('Find results :', JSON.stringify(response.data));
-            // navigate('../donorsList');
-        },
-        (error:any) => {
-          console.log(error);
-          alert('CHECK the ERROR!');
-        }
-        )
+      dispatch(findDonors(values));
 
     },
   });
@@ -113,7 +105,7 @@ function FindBloodGroup() {
     </Grid>
 <h3 style={{textAlign:'center'}}>Search Results: </h3>
 
-    {results && results.map((result) => (
+    {donors && donors.map((result: any) => (
   // <ul key="result.id">
   //   <li>{result.name}</li>
   // </ul>

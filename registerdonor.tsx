@@ -7,10 +7,6 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import axios from 'axios';
 import { authHeader } from '../services/authHeader';
-import { regDonors } from '../redux/features/donorSlice';
-import { useSelector, useDispatch } from 'react-redux';
-
-// const {} = useSelector();
 
 const validationSchema = yup.object({
   donorname: yup
@@ -33,9 +29,8 @@ const validationSchema = yup.object({
 
 function RegisterDonor() {
 
+  console.log('auth header :', authHeader());
   const headers:any = authHeader();
-  const dispatch = useDispatch();
-  let navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -47,14 +42,35 @@ function RegisterDonor() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      // alert(JSON.stringify(values, null, 2));
-
-        dispatch(regDonors(values));
-        navigate('../donorsList');
+      alert(JSON.stringify(values, null, 2));
       
+      const token = localStorage.getItem('user');
+     
+      fetch(`http://localhost:3000/donors`, {
+        method: 'POST',      
+        headers,
+        body: JSON.stringify({
+          "name": values.donorname,
+          "mailId":values.email,
+          "contact": values.contact,
+          "bloodGroup": values.bloodtype,
+          "place": values.placename
+        }),     
+      })
+        .then((res01: any) => {
+            console.log('res01 data :', res01.data);
+            navigate('../donorsList');
+        },
+        (error:any) => {
+          console.log(error);
+          alert('CHECK the ERROR!');
+        }
+        )
+
     },
   });
 
+  let navigate = useNavigate();
   const paperStyle = { padding: 20, height: '60vh', width: 280, margin: '20px auto' };
   const buttonStyle = { margin: '25px 0' }
 

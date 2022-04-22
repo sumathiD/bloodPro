@@ -44,7 +44,7 @@ function Signup() {
       AuthService.signup(username, password).then(
         (response) => {
           console.log("Sign up successfully", response);
-          navigate("/login");        
+          navigate("/login");
         },
         (error) => {
           console.log(error);
