@@ -101,7 +101,7 @@ function LoginDemo() {
           </Button>
         </form>
         <Typography>
-          Do you have an account ?
+          Don't have an account ?
           <Link to="/signup">
             Sign up
           </Link>
