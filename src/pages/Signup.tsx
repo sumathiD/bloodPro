@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, } from 'react-router-dom';
+import { useNavigate, Link} from 'react-router-dom';
 import { Avatar, Grid, Paper, TextField, Link } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -76,8 +76,15 @@ function Signup() {
 
           <Button variant="contained" color="secondary" fullWidth style={buttonStyle} type='submit'>
             SIGN UP </Button>
-
         </form>
+        
+        <Typography>
+          Already have an account ?
+          <Link to="/login">
+            Log In
+          </Link>
+        </Typography>
+        
       </Paper>
     </Grid>
   )
