@@ -4,10 +4,13 @@ import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import { TabContext, TabList } from '@mui/lab';
 import { Button } from '@material-ui/core';
+import { useState } from 'react';
 
 
 export default function Navbar() {
-  const [value, setValue] = React.useState('1');
+
+  const [value, setValue] = useState('1');
+  
   let navigate = useNavigate();
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {

@@ -10,10 +10,14 @@ import DonorsList from './DonorsList';
 function Dashboard() {
 
   let navigate = useNavigate();
+
   useEffect(() => {
+
     const token = localStorage.getItem('user');
+    
     if(!token) {
       navigate('/login');
+
     }
   }, [] )
 

@@ -20,13 +20,16 @@ const Img = styled('img')({
 export default function DonorsList() {
 
   let dispatch = useDispatch();
-  let donorState = useSelector((store: any) => {
-    return store["donors"];
-  });
+
   useEffect(() => {
     dispatch(getDonors()); // dispatch action
   }, [dispatch]);
 
+
+  let donorState = useSelector((store: any) => {
+    return store["donors"];
+  });
+  
   let { loading, errorMessage, donors } = donorState;
 
   return (
