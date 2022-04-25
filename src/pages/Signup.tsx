@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
-import { useNavigate, } from 'react-router-dom';
-import { Avatar, Grid, Paper, TextField, Link } from '@material-ui/core'
+import React from 'react';
+import { useNavigate, Link} from 'react-router-dom';
+import { Avatar, Grid, Paper, TextField} from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import * as yup from 'yup';
-import { Formik, Field, Form, ErrorMessage, useFormik } from 'formik';
-import axios from 'axios';
+import { useFormik } from 'formik';
 import AuthService from '../services/AuthService';
 
 
@@ -76,8 +73,15 @@ function Signup() {
 
           <Button variant="contained" color="secondary" fullWidth style={buttonStyle} type='submit'>
             SIGN UP </Button>
-
         </form>
+        
+        <Typography>
+          Already have an account ?
+          <Link to="/login">
+            Log In
+          </Link>
+        </Typography>
+        
       </Paper>
     </Grid>
   )
