@@ -51,6 +51,7 @@ function RegisterDonor() {
 
         dispatch(regDonors(values));
         navigate('../donorsList');
+        window.location.reload();
       
     },
   });

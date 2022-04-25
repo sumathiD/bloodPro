@@ -1,6 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-// import axios from 'axios';
-import { authHeader } from '../../services/authHeader';
 import axios from '../axiosInstance';
 
 
@@ -10,13 +8,10 @@ const initialState = {
     errorMessage: ''
 }
 
-// const API_URL01 = `http://localhost:3000`;
-const headers: any = authHeader();
-
-
 export const getDonors = createAsyncThunk('donors/getDonors', async () => {
     let response = await axios.get(`/donors`,
-        { headers });
+        // { headers } // referred from axiosInstance in redux folder
+        );
     return response.data;
 });
 
@@ -30,7 +25,9 @@ export const regDonors = createAsyncThunk(
             contact: values.contact,
             bloodGroup: values.bloodtype,
             place: values.placename,
-        }, { headers });
+        }, 
+        // { headers }
+        );
 
     });
 
@@ -38,7 +35,8 @@ export const findDonors = createAsyncThunk(
     'donors/findDonors',
     async (values: any): Promise<any> => {
         let response = await axios.get(`/donors/search?bloodgroup=${values.donorBldType}&place=${values.donorPlace}`,
-            { headers });
+            // { headers }
+            );
         console.log('find results', response.data);
         return response.data;
     });
